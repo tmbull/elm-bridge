@@ -43,6 +43,7 @@ makeElmModuleWithVersion elmVersion moduleName defs =
      , "import Json.Helpers exposing (..)"
      , "import Dict exposing (Dict)"
      , "import Set exposing (Set)"
+     , "import Url"
      , ""
      , ""
      ]) ++
