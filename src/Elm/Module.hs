@@ -65,6 +65,15 @@ makeModuleContentWithAlterations alt = intercalate "\n\n" . map mkDef
       mkDef (DefineElm proxy) =
           let def = alt (compileElmDef proxy)
           in renderElm def ++ "\n" ++ jsonParserForDef def ++ "\n" ++ jsonSerForDef def ++ "\n"
+    
+-- | Generates the content of a module, using custom type conversion rules. This is only the type
+-- definition without the encoder and decoder
+makeModuleContentWithOutDecAndEnc :: (ETypeDef -> ETypeDef) -> [DefineElm] -> String
+makeModuleContentWithOutDecAndEnc alt = intercalate "\n\n" . map mkDef
+    where
+        mkDef (DefineElm proxy) =
+        let def = alt (compileElmDef proxy)
+        in renderElm def ++ "\n"
 
 {-| A helper function that will recursively traverse type definitions and let you convert types.
 
